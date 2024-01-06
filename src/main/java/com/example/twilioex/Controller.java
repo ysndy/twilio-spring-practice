@@ -20,6 +20,7 @@ public class Controller {
 
         VoiceResponse twiml = new VoiceResponse.Builder().say(say).build();
         response.setContentType("text/xml");
+        response.setCharacterEncoding("UTF-8");
         try {
             response.getWriter().print(twiml.toXml());
         } catch (TwiMLException | IOException e) {
