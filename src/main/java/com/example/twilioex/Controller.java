@@ -34,8 +34,8 @@ public class Controller {
 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
-                new PhoneNumber(SENDER_PHONE_NUMBER),
                 new PhoneNumber(receiver_phone_number),
+                new PhoneNumber(SENDER_PHONE_NUMBER),
                 "휠차차 지도 접속 링크\nhttps://www.numbergolf.com"
         ).create();
 
