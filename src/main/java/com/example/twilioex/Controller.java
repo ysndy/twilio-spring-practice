@@ -16,7 +16,8 @@ public class Controller {
 
     @PostMapping("/voice")
     public void incomingCall(HttpServletResponse response){
-        Say say = new Say.Builder("Hello world! 안녕하세요").build();
+        Say say = new Say.Builder("안녕하세요").language(Say.Language.KO_KR).build();
+
         VoiceResponse twiml = new VoiceResponse.Builder().say(say).build();
         response.setContentType("text/xml");
         try {
