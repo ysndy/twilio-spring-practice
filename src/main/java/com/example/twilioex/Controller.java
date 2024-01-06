@@ -23,7 +23,8 @@ public class Controller {
 
     @PostMapping("/voice")
     public void incomingCall(HttpServletRequest request, HttpServletResponse response){
-        Say say = new Say.Builder("안녕하세요 휠차차입니다. 전동휠체어 지도를 보내드리니 메시지를 확인해주세요. 감사합니다.").language(Say.Language.KO_KR).build();
+        // 전동휠체어 지도를 보내드리니 메시지를 확인해주세요 감사합니다
+        Say say = new Say.Builder("안녕하세요 휠차차입니다").language(Say.Language.KO_KR).build();
         VoiceResponse twiml = new VoiceResponse.Builder().say(say).build();
 
         response.setContentType("text/xml");
