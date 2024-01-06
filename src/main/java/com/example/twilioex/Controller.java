@@ -23,7 +23,7 @@ public class Controller {
 
     @PostMapping("/voice")
     public void incomingCall(HttpServletRequest request, HttpServletResponse response){
-        Say say = new Say.Builder("안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요").language(Say.Language.KO_KR).build();
+        Say say = new Say.Builder("안녕하세요 휠차차입니다").language(Say.Language.KO_KR).build();
         VoiceResponse twiml = new VoiceResponse.Builder().say(say).build();
 
         response.setContentType("text/xml");
@@ -35,15 +35,15 @@ public class Controller {
             e.printStackTrace();
         }
 
-        //메시지 보내기
-        String receiver_phone_number = request.getParameter("From");
-
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                new PhoneNumber(receiver_phone_number),
-                new PhoneNumber(SENDER_PHONE_NUMBER),
-                "휠차차 지도 접속 링크\nhttps://www.numbergolf.com"
-        ).create();
+//        //메시지 보내기
+//        String receiver_phone_number = request.getParameter("From");
+//
+//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+//        Message message = Message.creator(
+//                new PhoneNumber(receiver_phone_number),
+//                new PhoneNumber(SENDER_PHONE_NUMBER),
+//                "휠차차 지도 접속 링크\nhttps://www.numbergolf.com"
+//        ).create();
 
     }
 
