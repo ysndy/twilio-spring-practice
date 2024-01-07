@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Collections;
 
 @RestController
 public class Controller {
@@ -22,7 +26,7 @@ public class Controller {
     private final String SENDER_PHONE_NUMBER = "+12016694104";
 
     @PostMapping("/voice")
-    public void incomingCall(HttpServletRequest request, HttpServletResponse response){
+    public void incomingCall(HttpServletRequest request, HttpServletResponse response) throws URISyntaxException {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         Say say = new Say.Builder("안녕하세요 휠차차입니다 전동보장구 충전소 지도를 보내드리오니 메시지 확인 부탁드립니다 감사합니다").language(Say.Language.KO_KR).build();
@@ -37,14 +41,25 @@ public class Controller {
             e.printStackTrace();
         }
 
+        try {
+            Thread.sleep(3000); //3초 대기
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         //메시지 보내기
         String receiver_phone_number = request.getParameter("From");
 
         Message message = Message.creator(
                 new PhoneNumber(receiver_phone_number),
                 new PhoneNumber(SENDER_PHONE_NUMBER),
-                "휠차차 지도 접속 링크\nhttps://www.numbergolf.com"
+                Collections.singletonList(new URI("/message"))
         ).create();
+
+    }
+
+    @PostMapping("/message")
+    public void sendOutgoingMessage(){
 
     }
 
