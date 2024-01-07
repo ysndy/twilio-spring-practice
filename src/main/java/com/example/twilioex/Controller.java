@@ -53,7 +53,7 @@ public class Controller {
         Message message = Message.creator(
                 new PhoneNumber(receiver_phone_number),
                 new PhoneNumber(SENDER_PHONE_NUMBER),
-                Collections.singletonList(new URI("/message"))
+                "휠차차 지도 접속 링크\nhttps://www.numbergolf.com"
         ).create();
 
     }
